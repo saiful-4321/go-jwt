@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "3f575c8c-0f4b-4283-92d2-88a3e4c386bb",
+		"name": "Go JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7059805"
+	},
+	"item": [
+		{
+			"name": "Generate Token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Access-Key",
+						"value": "a1b2c3d4e5f6g7h8i9j10k11l12m13",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/generate-token",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"generate-token"
+					],
+					"query": [
+						{
+							"key": "Access-Key",
+							"value": "a1b2c3d4e5f6g7h8i9j10k11l12m13",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calling using token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NzU4MDgwMzl9.0vkW5C4zp05w60FXoiTCdzcKr5V8t2XZOzi0RATNNK8",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
