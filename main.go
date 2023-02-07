@@ -9,9 +9,11 @@ import (
 )
 
 var SECRET = []byte("super-secret-auth-key")
+var API_KEY = "a1b2c3d4e5f6g7h8i9j10k11l12m13"
 
 func main() {
-	http.HandleFunc("/", Home)
+	http.Handle("/", ValidateJWT(Home))
+	http.HandleFunc("/generate-token", GetJWT)
 	http.ListenAndServe(":3000", nil)
 }
 
@@ -65,4 +67,17 @@ func ValidateJWT(next func(w http.ResponseWriter, r *http.Request)) http.Handler
 			w.Write([]byte("Token not found"))
 		}
 	})
+}
+
+// Getting JWT token via request
+func GetJWT(w http.ResponseWriter, r *http.Request) {
+	if r.Header["Access-Key"] != nil {
+		if r.Header["Access-Key"][0] == API_KEY {
+			token, err := CreateJWT()
+			if err != nil {
+				return
+			}
+			fmt.Fprintf(w, token)
+		}
+	}
 }
